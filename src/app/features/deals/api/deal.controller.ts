@@ -7,11 +7,14 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { DealService } from './deal.service';
 import { DealInfoDto } from '../common/deal.dtos';
+import { AuthGuard } from 'src/common/guards/auth.guard';
 
 @Controller('deals')
+@UseGuards(AuthGuard)
 export class DealController {
   constructor(private readonly dealService: DealService) {}
 

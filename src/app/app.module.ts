@@ -8,6 +8,7 @@ import {
   timeoutProvider,
 } from '../providers/providers';
 import { DealController, DealService } from './features/deals/deal';
+import { AppController } from './features/app/app.controller';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { DealController, DealService } from './features/deals/deal';
     MongooseModule.forRoot(process.env.MONGO_URI),
     ConfigModule.forRoot({ isGlobal: true }),
   ],
-  controllers: [DealController],
+  controllers: [AppController, DealController],
   providers: [
     DealService,
     DealRepository,
