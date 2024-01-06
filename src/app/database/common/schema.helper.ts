@@ -33,14 +33,3 @@ export function createSchema<T>(model: T) {
 
   return { schema };
 }
-
-export function secureUserFields(data: DealDocument): IDeal {
-  const { pin, meta, password, email, phone, __v, _id, ...rest } =
-    data.toObject();
-  return {
-    ...rest,
-    meta: omit(meta, ['id', '_id']),
-    email: { address: email.address, is_verified: email.is_verified },
-    phone: { number: phone.number, is_verified: phone.is_verified },
-  };
-}

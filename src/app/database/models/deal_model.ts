@@ -2,7 +2,7 @@ import { Document } from 'mongoose';
 import { Prop, Schema } from '@nestjs/mongoose';
 import { createSchema, schemaOptions } from '../common/schema.helper';
 import { BaseSchema } from '../schema/base.schema';
-import { BrandSchema, DiscountSchema } from '../schema/deal_schemas';
+import { BrandSchema, DiscountSchema } from '../schema/deal.schemas';
 
 @Schema(schemaOptions('DEALS_MODEL'))
 export class DealModel extends BaseSchema {

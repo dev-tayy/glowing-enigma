@@ -132,7 +132,6 @@ export class RepositoryHelper<T> implements OnModuleInit {
         total: totalDocs,
         currentPage: page,
         hasNext: totalDocs > limit * page,
-        remainingCount: totalDocs - limit * page,
         totalPages: Math.ceil(totalDocs / limit),
       };
     } catch (e) {

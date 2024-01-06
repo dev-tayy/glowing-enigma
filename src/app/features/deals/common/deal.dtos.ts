@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import {
-  IsAlphanumeric,
+  IsString,
   IsArray,
   IsEnum,
   IsNotEmpty,
@@ -10,49 +10,32 @@ import {
 } from 'class-validator';
 import { DiscountMode } from 'src/common/constants/enums';
 
-export class DealInfoDto {
-  @IsNotEmpty()
-  @IsAlphanumeric()
-  title: string;
-
-  @IsNotEmpty()
-  @IsAlphanumeric()
-  note: string;
-
-  @IsNotEmpty()
-  @ValidateNested({ each: true })
-  brand: BrandDto;
-
-  @ValidateIf((o) => o.discounts?.length > 0)
-  @ValidateNested({ each: true })
-  @Type(() => DiscountsDto)
-  discounts: DiscountsDto[];
-}
-
 export class BrandDto {
   @IsNotEmpty()
-  @IsAlphanumeric()
-  brand: string;
+  @IsString()
+  name: string;
 
   @IsNotEmpty()
-  @IsAlphanumeric()
+  @IsString()
   description: string;
 
   @IsArray()
   tags: string[];
 
   @IsNotEmpty()
+  @IsString()
   @IsUrl()
   cover_image: string;
 
   @IsNotEmpty()
+  @IsString()
   @IsUrl()
   logo: string;
 }
 
 export class DiscountsDto {
   @IsNotEmpty()
-  @IsAlphanumeric()
+  @IsString()
   name: string;
 
   @IsNotEmpty()
@@ -63,10 +46,29 @@ export class DiscountsDto {
   conditions: string[];
 
   @IsNotEmpty()
-  @IsAlphanumeric()
+  @IsString()
   redeem_note: string;
 
   @IsNotEmpty()
   @IsUrl()
   ref_code: string;
+}
+
+export class DealInfoDto {
+  @IsNotEmpty()
+  @IsString()
+  title: string;
+
+  @IsNotEmpty()
+  @IsString()
+  note: string;
+
+  @ValidateNested({ each: true })
+  @Type(() => BrandDto)
+  brand: BrandDto;
+
+  @ValidateIf((o) => o.discounts?.length > 0)
+  @ValidateNested({ each: true })
+  @Type(() => DiscountsDto)
+  discounts: DiscountsDto[];
 }

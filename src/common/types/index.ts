@@ -4,7 +4,6 @@ export type RepositoryFindAll<T> = {
   total: number;
   currentPage: number;
   hasNext: boolean;
-  remainingCount: number;
   totalPages: number;
 };
 

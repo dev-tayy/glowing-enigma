@@ -1,5 +1,5 @@
 export enum DiscountMode {
-  ONLINE = 'ONLINE',
+  ONLINE = 'online',
   IN_STORE = 'in_store',
 }
 
